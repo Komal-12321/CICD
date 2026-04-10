@@ -2,25 +2,21 @@ version: 0.2
 
 phases:
   install:
-    commands:
-      - echo Installing dependencies...
-      - pip install -r requirements.txt || echo "No requirements file"
-
-  build:
-    commands:version: 0.2
-
-phases:
-  install:
     runtime-versions:
       python: 3.11
     commands:
       - echo Installing dependencies...
-      - pip install -r requirements.txt
+      - pip install --upgrade pip
+      - pip install flask
+
+  pre_build:
+    commands:
+      - echo Pre-build phase started
 
   build:
     commands:
-      - echo Build started
-      - echo No build step required for Flask app
+      - echo Build phase started
+      - echo Nothing to build for Flask app
 
   post_build:
     commands:
@@ -29,13 +25,3 @@ phases:
 artifacts:
   files:
     - '**/*'
-      - echo Build started
-      - python app.py || echo "No app file"
-
-  post_build:
-    commands:
-      - echo Build completed
-
-artifacts:
-  files:
-    - '*/'
